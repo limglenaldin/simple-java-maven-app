@@ -1,0 +1,10 @@
+node {
+    withDockerContainer(args: '-v /root/.m2:/root/.m2 --network host', image: 'maven:3.9.0') {
+        stage('Build') {
+            checkout scm
+            script {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+    }
+}
