@@ -13,5 +13,12 @@ node {
             }
             junit 'target/surefire-reports/*.xml'
         }
+        stage('Deploy') {
+            checkout scm
+            script {
+                sh './jenkins/scripts/deliver.sh'
+            }
+            sleep time: 1, unit: 'MINUTES'
+        }
     }
 }
