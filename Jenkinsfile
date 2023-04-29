@@ -13,6 +13,9 @@ node {
             }
             junit 'target/surefire-reports/*.xml'
         }
+        stage('Manual Approval') {
+            input 'Lanjutkan ke tahap Deploy?'
+        }
         stage('Deploy') {
             checkout scm
             script {
